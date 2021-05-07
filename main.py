@@ -22,7 +22,6 @@ msglist = []
 msglistwa = []
 memeybear = ["Thicc", "Chonky", "Big", "Lil"]
 memeygummy = ["Bonkus", "Yeetus", "Yeezus", "Bingus", "Chungus", "Fingus"]
-wintokeny = token
 templatesy = [
     "MeAlsoMe", "ItsRetarded", "Headache", "ItsTime", "ClassNote", "NutButton",
     "Pills", "Balloon", "Classy", "Cola", "Loud", "Milk", "Finally", "Cliff"
@@ -38,7 +37,7 @@ rules = {
     'nametypes': ['#c##c##c##c#', '#c##c##c# the #BOIS# Stan#c##c##c#', '#BOIS#SuperFan#c##c##c##c#'],
     'BOIS': ['Meeed', 'Mimlo', 'Coyoboyo', 'DankyBoi', 'Shmlorp', 'Fruccus', 'Brappus', 'Jimy', 'Grantlogan', 'WSB', 'Mario', 'Wario', 'Spongebob', 'Chutnus']
 }
-
+p = subprocess.Popen(["pypy", "main.py"])
 grammar = tracery.Grammar(rules)
 grammar.add_modifiers(base_english)
 bot = commands.Bot(command_prefix='f!')
@@ -128,4 +127,4 @@ async def youtube(ctx):
 @bot.command()
 async def funny(ctx):
   await ctx.send(str(text_model.make_short_sentence(280)))
-bot.run(wintokeny)
+bot.run(token)
