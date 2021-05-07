@@ -37,7 +37,7 @@ rules = {
     'nametypes': ['#c##c##c##c#', '#c##c##c# the #BOIS# Stan#c##c##c#', '#BOIS#SuperFan#c##c##c##c#'],
     'BOIS': ['Meeed', 'Mimlo', 'Coyoboyo', 'DankyBoi', 'Shmlorp', 'Fruccus', 'Brappus', 'Jimy', 'Grantlogan', 'WSB', 'Mario', 'Wario', 'Spongebob', 'Chutnus']
 }
-p = subprocess.Popen(["pypy", "main.py"])
+p = subprocess.Popen(["python", "server.py"])
 grammar = tracery.Grammar(rules)
 grammar.add_modifiers(base_english)
 bot = commands.Bot(command_prefix='f!')
