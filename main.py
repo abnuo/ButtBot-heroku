@@ -3,6 +3,7 @@ import copy
 import discord
 import discord.utils
 from discord.ext import commands
+from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
 from urllib.parse import unquote
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
@@ -65,12 +66,31 @@ async def status_task():
 @bot.event
 async def on_ready():
     print('WELCOME. 2. DA. FRUCKZ0NE, {0.user}'.format(bot))
+    
     task1 = bot.loop.create_task(status_task())
     task2 = bot.loop.create_task(poople())
 
 @bot.command()
 async def say(ctx, channel, what2say):
 	await ctx.send(what2say)
+
+@bot.command()
+async def bruh(ctx, poggus):
+    await ctx.send(
+    "Pog",
+    components=[
+        Button(style=ButtonStyle.blue, label="Bruh"),
+        Button(style=ButtonStyle.red, label="Pogging"),
+        Button(style=ButtonStyle.green, label=str(poggus)),
+        ],
+    )
+
+    res = await bot.wait_for("button_click")
+    if res.channel == ctx.message.channel:
+        await res.respond(
+            type=InteractionType.ChannelMessageWithSource,
+            content=f'{res.component.label} Was A Pog'
+        )
 
 @bot.command()
 async def scratch(ctx, user):
