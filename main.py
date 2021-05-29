@@ -66,7 +66,7 @@ async def status_task():
 @bot.event
 async def on_ready():
     print('WELCOME. 2. DA. FRUCKZ0NE, {0.user}'.format(bot))
-    
+    DiscordComponents(bot)
     task1 = bot.loop.create_task(status_task())
     task2 = bot.loop.create_task(poople())
 
