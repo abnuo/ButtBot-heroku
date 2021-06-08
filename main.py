@@ -17,6 +17,7 @@ import random
 import tracery
 import requests
 import json
+import itertools
 from tracery.modifiers import base_english
 token = os.environ['WinTokeny']
 msglist = []
@@ -46,33 +47,13 @@ bot = commands.Bot(command_prefix='f!')
 def genString(length):
 	return ''.join(random.choice(string.ascii_letters) for i in range(length))
 
-async def status_task():
-  while True:
-    poopermario = grammar.flatten("#origin#")
-    if poopermario.startswith('(WATCHING)'):
-      poopermario = poopermario.split("(WATCHING)",1)[1] 
-      await bot.change_presence(
-        activity=discord.Activity(
-          type=discord.ActivityType.watching, name=poopermario))
-    elif poopermario.startswith('(PLAYING)'):
-      poopermario = poopermario.split("(PLAYING)",1)[1] 
-      await bot.change_presence(activity=discord.Game(name=poopermario))
-    elif poopermario.startswith('(STREAMING)'):
-      poopermario = poopermario.split("(STREAMING)",1)[1]
-      await bot.change_presence(activity=discord.Streaming(name="My Stream", url=poopermario))
-    print('did the thing:', poopermario) 
-    await asyncio.sleep(10)
-
-@bot.event
-async def on_ready():
-    print('WELCOME. 2. DA. FRUCKZ0NE, {0.user}'.format(bot))
-    DiscordComponents(bot)
-    task1 = bot.loop.create_task(status_task())
-    task2 = bot.loop.create_task(poople())
+def comb(l):
+     yield from itertools.product(*([l] * 3))
 
 @bot.command()
-async def say(ctx, channel, what2say):
-	await ctx.send(what2say)
+async def combs(ctx, str):
+    for i in comb(str):
+        await ctx.send(str(i))
 
 @bot.command()
 async def bruh(ctx, poggus):
