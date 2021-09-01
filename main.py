@@ -111,21 +111,11 @@ async def react(ctx, emoji, id):
   await massage.add_reaction(emoji)
   await ctx.send('i did it B O I')
 @bot.command()
-async def youtube(ctx):
-  r = requests.get('https://www.youtube.com/get_video_info?&video_id=mB9ys-pJz8Q')
-  pooper = unquote(r.text)
-  parsed = urlparse.urlparse(pooper)
-  mariosex = parse_qs(parsed.query)
-  mariosex = mariosex[' codecs'][0]
-  urlpenis = '\\"adaptiveFormats\\'
-  print(urlpenis)
-  #mariosex = mariosex.split(urlpenis,1)
-  mariosex = ast.literal_eval(mariosex)
-  print(mariosex)
-  with open('hi.json', 'w') as poo:
-    poo.write(json.dumps(mariosex))
-  # await ctx.send(r.text)
+async def u8(data):
+  filename = 'u8_' + genString(5)
+  os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
+  await ctx.send(file=discord.File('filename' + '.wav'))
 @bot.command()
-async def funny(ctx):
+async def markov(ctx):
   await ctx.send(str(text_model.make_short_sentence(280)))
 bot.run(token)
