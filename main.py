@@ -124,7 +124,7 @@ async def u8(ctx, data):
       os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
   await ctx.send(file=discord.File(filename + '.wav'))
 @bot.command()
-async def 2u8(ctx, data):
+async def tou8(ctx, data):
   filename = 'u8_' + genString(5)
   if ctx.message.attachments:
       r = requests.get(ctx.message.attachments[0].url)
