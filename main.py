@@ -115,7 +115,7 @@ async def react(ctx, emoji, id):
 async def u8(ctx, data):
   filename = 'u8_' + genString(5)
   os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
-  await ctx.send(file=discord.File('filename' + '.wav'))
+  await ctx.send(file=discord.File(filename + '.wav'))
 @bot.command()
 async def markov(ctx):
   await ctx.send(str(text_model.make_short_sentence(280)))
