@@ -124,6 +124,18 @@ async def u8(ctx, data):
       os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
   await ctx.send(file=discord.File(filename + '.wav'))
 @bot.command()
+async def 2u8(ctx, data):
+  filename = 'u8_' + genString(5)
+  if ctx.message.attachments:
+      r = requests.get(ctx.message.attachments[0].url)
+      os.system('echo ' + r.text + ' | ffmpeg -i - -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
+  elif data.startswith('http://') or data.startswith('https://'):
+      r = requests.get(data)
+      os.system('echo ' + data + ' | ffmpeg -i - -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
+  else:
+      os.system('echo ' + data + ' | ffmpeg -i - -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
+  await ctx.send(file=discord.File(filename + '.raw'))
+@bot.command()
 async def markov(ctx):
   await ctx.send(str(text_model.make_short_sentence(280)))
 bot.run(token)
