@@ -112,7 +112,7 @@ async def react(ctx, emoji, id):
   await massage.add_reaction(emoji)
   await ctx.send('i did it B O I')
 @bot.command()
-async def u8(data):
+async def u8(ctx, data):
   filename = 'u8_' + genString(5)
   os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
   await ctx.send(file=discord.File('filename' + '.wav'))
