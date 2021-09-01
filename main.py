@@ -18,6 +18,7 @@ import tracery
 import requests
 import json
 import itertools
+import string
 from tracery.modifiers import base_english
 token = os.environ['WinTokeny']
 msglist = []
