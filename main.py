@@ -118,11 +118,15 @@ async def u8(ctx, data):
       r = requests.get(ctx.message.attachments[0].url)
       os.system('echo ' + r.text + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
   elif data.startswith('http://') or data.startswith('https://'):
-      r = requests.get(data)
-      os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
+      #r = requests.get(data)
+      os.system('ffmpeg -f u8 -ar 8000 -ac 1 -i ' + data + ' ' + filename + '.wav')
   else:
-      os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
-  await ctx.send(file=discord.File(filename + '.wav'))
+      await ctx.send('Bruh There No TEXT Or URL')
+  try:
+      await ctx.send(file=discord.File(filename + '.wav'))
+  except Exception as e:
+      await ctx.send('Fail: ```' + str(e) + '```')
+  #await ctx.send(file=discord.File(filename + '.wav'))
 @bot.command()
 async def tou8(ctx, data):
   filename = 'u8_' + genString(5)
