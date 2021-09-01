@@ -128,13 +128,15 @@ async def tou8(ctx, data):
   filename = 'u8_' + genString(5)
   if ctx.message.attachments:
       r = requests.get(ctx.message.attachments[0].url)
-      os.system('echo ' + r.text + ' | ffmpeg -i - -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
+      os.system('ffmpeg -i ' + ctx.message.attachments[0].url + ' -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
   elif data.startswith('http://') or data.startswith('https://'):
-      r = requests.get(data)
-      os.system('echo ' + data + ' | ffmpeg -i - -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
+      os.system('ffmpeg -i ' + data + ' -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
   else:
-      os.system('echo ' + data + ' | ffmpeg -i - -f u8 -ar 8000 -ac 1 ' + filename + '.raw')
-  await ctx.send(file=discord.File(filename + '.raw'))
+      await ctx.send('Bruh There No ATTACHMENT Or URL')
+  try:
+      await ctx.send(file=discord.File(filename + '.raw'))
+  except Exception as e:
+      await ctx.send('Fail: ```' + str(e) + '```')
 @bot.command()
 async def markov(ctx):
   await ctx.send(str(text_model.make_short_sentence(280)))
