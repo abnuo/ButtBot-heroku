@@ -114,7 +114,14 @@ async def react(ctx, emoji, id):
 @bot.command()
 async def u8(ctx, data):
   filename = 'u8_' + genString(5)
-  os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
+  if ctx.message.attachments:
+      r = requests.get(ctx.message.attachments[0].url)
+      os.system('echo ' + r.text + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
+  elif data.startswith('http://') or data.startswith('https://'):
+      r = requests.get(data)
+      os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
+  else:
+      os.system('echo ' + data + ' | ffmpeg -f u8 -ar 8000 -ac 1 -i - ' + filename + '.wav')
   await ctx.send(file=discord.File(filename + '.wav'))
 @bot.command()
 async def markov(ctx):
