@@ -3,4 +3,5 @@ discord-components
 requests
 aiofiles
 tracery
+markovify
 Flask
