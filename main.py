@@ -23,6 +23,7 @@ from tracery.modifiers import base_english
 token = os.environ['WinTokeny']
 msglist = []
 msglistwa = []
+statesize = 1
 memeybear = ["Thicc", "Chonky", "Big", "Lil"]
 memeygummy = ["Bonkus", "Yeetus", "Yeezus", "Bingus", "Chungus", "Fingus"]
 templatesy = [
@@ -65,11 +66,11 @@ async def on_message(message):
         changel = bot.get_channel(836649499089698816)
         if open("corpus.txt").read() == "":
             r = requests.get('https://getpantry.cloud/apiv1/pantry/' + os.environ["pastry"] + '/basket/dict')
-            text_model = arkovify.Text.from_json(model_json)
+            text_model = markovify.Text.from_json(model_json, state_size=statesize)
         else:
             with open("corpus.txt") as f:
                 text = f.read()
-            text_model = markovify.Text(text)
+            text_model = markovify.Text(text, state_size=statesize)
             r = requests.post('https://getpantry.cloud/apiv1/pantry/' + os.environ["pastry"] + '/basket/dict', data=text_model.to_json())
         await changel.send(str(text_model.make_short_sentence(15)))
     await bot.process_commands(message)
