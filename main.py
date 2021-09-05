@@ -51,6 +51,25 @@ def genString(length):
 def comb(l):
      yield from itertools.product(*([l] * 3))
 
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    if message.channel.id == '836649499089698816':
+        changel = bot.get_channel(836649499089698816)
+        with open("corpus.txt", "a") as f:
+            f.write(message.content + " ")
+        if open("corpus.txt").read() == "":
+            r = requests.get('https://getpantry.cloud/apiv1/pantry/2d75ecbf-e6ce-4380-ad76-7ffacee6516f/basket/dict')
+            text_model = arkovify.Text.from_json(model_json)
+        else:
+            with open("corpus.txt") as f:
+                text = f.read()
+            text_model = markovify.Text(text)
+            r = requests.post('https://getpantry.cloud/apiv1/pantry/2d75ecbf-e6ce-4380-ad76-7ffacee6516f/basket/dict', data=text_model.to_json())
+        await changel.send(text_model.make_short_sentence(15))
+    await bot.process_commands(message)
+
 @bot.command()
 async def combs(ctx, str):
     for i in comb(str):
