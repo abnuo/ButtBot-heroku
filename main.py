@@ -52,13 +52,17 @@ def comb(l):
      yield from itertools.product(*([l] * 3))
 
 @bot.event
+async def on_ready():
+    print("I AM ALIVE")
+
+@bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
+    with open("corpus.txt", "a+") as f:
+            f.write(message.content + " ")
     if message.channel.id == '836649499089698816':
         changel = bot.get_channel(836649499089698816)
-        with open("corpus.txt", "a") as f:
-            f.write(message.content + " ")
         if open("corpus.txt").read() == "":
             r = requests.get('https://getpantry.cloud/apiv1/pantry/' + os.environ["pastry"] + '/basket/dict')
             text_model = arkovify.Text.from_json(model_json)
