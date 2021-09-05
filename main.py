@@ -71,7 +71,7 @@ async def on_message(message):
                 text = f.read()
             text_model = markovify.Text(text)
             r = requests.post('https://getpantry.cloud/apiv1/pantry/' + os.environ["pastry"] + '/basket/dict', data=text_model.to_json())
-        await changel.send(text_model.make_short_sentence(15))
+        await changel.send(str(text_model.make_short_sentence(15)))
     await bot.process_commands(message)
 
 @bot.command()
