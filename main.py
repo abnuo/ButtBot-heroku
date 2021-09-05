@@ -3,7 +3,6 @@ import copy
 import discord
 import discord.utils
 from discord.ext import commands
-from discord_components import DiscordComponents, Button, ButtonStyle, InteractionType
 from urllib.parse import unquote
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
