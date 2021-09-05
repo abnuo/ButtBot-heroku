@@ -61,7 +61,7 @@ async def on_message(message):
         return
     with open("corpus.txt", "a+") as f:
             f.write(message.content + " ")
-    if message.channel.id == '836649499089698816':
+    if message.channel.id == 836649499089698816:
         changel = bot.get_channel(836649499089698816)
         if open("corpus.txt").read() == "":
             r = requests.get('https://getpantry.cloud/apiv1/pantry/' + os.environ["pastry"] + '/basket/dict')
