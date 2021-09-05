@@ -77,24 +77,6 @@ async def combs(ctx, str):
         await ctx.send(str(i))
 
 @bot.command()
-async def bruh(ctx, poggus):
-    await ctx.send(
-    "Pog",
-    components=[
-        Button(style=ButtonStyle.blue, label="Bruh"),
-        Button(style=ButtonStyle.red, label="Pogging"),
-        Button(style=ButtonStyle.green, label=str(poggus)),
-        ],
-    )
-
-    res = await bot.wait_for("button_click")
-    if res.channel == ctx.message.channel:
-        await res.respond(
-            type=InteractionType.ChannelMessageWithSource,
-            content=f'{res.component.label} Was A Pog'
-        )
-
-@bot.command()
 async def scratch(ctx, user):
   url = f'https://api.scratch.mit.edu/users/{user}'
   print(url)
