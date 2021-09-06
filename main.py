@@ -64,7 +64,7 @@ async def on_message(message):
             f.write(message.content + " ")
     with open("corpus.txt") as f:
         text = f.read()
-    text_model = markovify.Text(text, state_size=statesize)
+    text_model = markovify.Text(text, state_size=statesize, well_formed=False)
     text_model = text_model.compile()
     if message.channel.id == 836649499089698816:
         changel = bot.get_channel(836649499089698816)
