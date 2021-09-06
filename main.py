@@ -66,8 +66,7 @@ async def on_message(message):
         changel = bot.get_channel(836649499089698816)
         with open("corpus.txt") as f:
             text = f.read()
-            text_model = markovify.Text(text, state_size=statesize)
-            #r = requests.post('https://getpantry.cloud/apiv1/pantry/' + os.environ["pastry"] + '/basket/dict', data=text_model.to_json())
+        text_model = markovify.Text(text, state_size=statesize)
         await changel.send(str(text_model.make_short_sentence(15)))
     await bot.process_commands(message)
 
