@@ -69,6 +69,9 @@ async def on_message(message):
     if message.channel.id == 836649499089698816:
         changel = bot.get_channel(836649499089698816)
         await changel.send(str(text_model.make_short_sentence(random.randint(50, 280))))
+    if message.content.lower().startswith("buttbot") == True:
+        chanle = bot.get_channel(message.channel.id)
+        await chanle.send(str(text_model.make_short_sentence(random.randint(50, 280))))
     await bot.process_commands(message)
 
 @bot.command()
