@@ -67,7 +67,7 @@ async def on_message(message):
         with open("corpus.txt") as f:
             text = f.read()
         text_model = markovify.Text(text, state_size=statesize)
-	text_model = text_model.compile()
+        text_model = text_model.compile()
         await changel.send(str(text_model.make_short_sentence(15)))
     await bot.process_commands(message)
 
