@@ -68,7 +68,7 @@ async def on_message(message):
     text_model = text_model.compile()
     if message.channel.id == 836649499089698816:
         changel = bot.get_channel(836649499089698816)
-        await changel.send(str(text_model.make_short_sentence(15)))
+        await changel.send(str(text_model.make_short_sentence(random.randint(50, 280))))
     await bot.process_commands(message)
 
 @bot.command()
@@ -143,7 +143,4 @@ async def tou8(ctx, data):
       await ctx.send(file=discord.File(filename + '.raw'))
   except Exception as e:
       await ctx.send('Fail: ```' + str(e) + '```')
-@bot.command()
-async def markov(ctx):
-  await ctx.send(str(text_model.make_short_sentence(280)))
 bot.run(token)
