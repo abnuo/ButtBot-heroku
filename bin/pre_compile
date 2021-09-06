@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-wget -O corpus.txt https://bruhpoggus.herokuapp.com/corpus.txt
+#wget -O corpus.txt https://bruhpoggus.herokuapp.com/corpus.txt
+wget -O corpus.txt https://cdn.discordapp.com/attachments/814197726811521087/884470968263778335/corpus.json
 #echo PreCompile
