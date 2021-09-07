@@ -72,7 +72,7 @@ async def on_message(message):
     if message.content.lower().startswith("buttbot") == True:
         chanle = bot.get_channel(message.channel.id)
         but = message.content.split()
-        seed = but[random.randint(1, len(but))]
+        seed = but[random.randint(1, len(but) - 1)]
         try:
             await chanle.send(str(text_model.make_sentence_with_start(seed)))
         except:
