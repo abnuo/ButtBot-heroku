@@ -71,8 +71,8 @@ async def on_message(message):
         await changel.send(str(text_model.make_short_sentence(random.randint(50, 280))))
     if message.content.lower().startswith("buttbot") == True:
         chanle = bot.get_channel(message.channel.id)
-	but = message.content.split()
-	seed = but[random.randint(1, len(but))]
+        but = message.content.split()
+        seed = but[random.randint(1, len(but))]
         await chanle.send(str(text_model.make_sentence_with_start(seed)))
     await bot.process_commands(message)
 
