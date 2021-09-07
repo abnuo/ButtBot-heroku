@@ -74,7 +74,7 @@ async def on_message(message):
         but = message.content.split()
         try:
             seed = but[random.randint(1, len(but) - 1)]
-            await chanle.send(str(text_model.make_sentence_with_start(seed)).split()[0:random.randint(5, 15)])
+            await chanle.send(' '.join(str(text_model.make_sentence_with_start(seed)).split()[0:random.randint(5, 15)]))
         except:
             await chanle.send(str(text_model.make_short_sentence(random.randint(50, 280))))
     await bot.process_commands(message)
